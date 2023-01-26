@@ -1,29 +1,39 @@
-# Savvy Coders Project Boilerplate Starter Kit
+# Product Planning
 
-## Overview
+## Definition Statement
 
-This template repository contains several opinionated, 'starter' files and settings to help Savvy Coder students focus more time and energy on learning how to code and/or craft 'business logic' for projects and less time on configurations.
+I want to build an application that processes your own words, turns them into a form of password then stores text using that. This text or code will then 'Burn' or Disappear in only 12 hours. On-top of this I want my application to have the ability to store links that can then track how many users end up interacting with this link.
 
-In addition to a '.gitignore' and some VS Code specific extensions and settings, it includes the 'recommended' settings for:
+<br>
+<br>
 
-1. [ESLint](eslint.org)
-2. [Stylelint](stylelint.io)
-3. [Prettier](prettier.io)
+## Definition Of Audience
+- >Programmers
+- >Influencers
+- >Leaders
 
-## Get Started
+<br>
+<br>
 
-**First and foremost,** make sure that your local machine is set up with all of the 'dev environment tooling' as per the instructions in the curriculum.
+## Outline Of Content
+- ### what do i want on each page?
+- - Simplicity, Easy to navigate and clutter free.
 
-Well, after establishing your directory structure on your local machine, (e.g. '~/Code/SavvyCoders'), clone the Savvy Starter Repo - essentially, there should be a button that says **Use this template.**
+<br>
 
-> [Read more about using templates on GitHub here...](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template)
+- ### what do i want the functionality of each page to do?
+- - Unlock files
+- - Create files
+- - Contact me
 
-Once this repo has been created on your GitHub, you can click on the button to 'clone' it as usual.
+<br>
 
-Once it's `clone`d to your local machine, `cd` into the directory and **be sure to do:** `npm i` to get all of the dependencies installed. If you see any _errors_ (warnings are OK) on Windows, you may have to do `npm install`.
+- ### what is the purpose of my application
+- - To store text
+- - quick transfers
+- - get growth feedback
 
-Now, enter `code .` to open this project in VS Code, and look for a prompt to 'install some extensions' once inside VS Code (in the bottom `right` of your screen). You should install these.
+<br>
 
-In your repo, feel free to update this README and make any other initial changes to files, etc. Then go ahead and do your usual `git` steps -- add, commit, and push.
-
-**Note:** This is a template repository, no need to 'fork it.
+- ### what problem am i solving?
+- - 
