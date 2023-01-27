@@ -151,5 +151,9 @@ I want to build an application that processes your own words, turns them into a 
 - - ### My App Diffrence
 - - - Better placement
 - - - Updated Icons
+---
 
-[UserFlow Chart](/flowchart.png)
+
+# User-Flow Chart
+
+![UserFlow Chart](/Images/flowchart.png)
