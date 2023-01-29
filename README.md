@@ -73,8 +73,13 @@ I want to build an application that processes your own words, turns them into a 
 <br>
 <br>
 
-## Mural Map Link
-- ### [Story Map]()
+# Mural Map Link
+- ### [Story Map](https://app.mural.co/t/usrstorymapdb0170/m/usrstorymapdb0170/1674777884730/afeacf530299b595a71dcf3bc01d4408fae959f4?sender=ud917262b2b13b20bb8752529)
+![UserStory Map](/Images/usrStoryMap.png)
+
+---
+## Mural BackBone
+![User Backbone](/Images/UserSTORY%20BACKBONE.png)
 
 <br>
 <br>
@@ -157,3 +162,33 @@ I want to build an application that processes your own words, turns them into a 
 # User-Flow Chart
 
 ![UserFlow Chart](/Images/flowchart.png)
+
+---
+# S.W.O.T. Analysis
+![SWOT Analysis](/Images/Swot.jpg)
+
+---
+#### In order...
+---
+# Home Page
+![Home Page](/Images/Home%20Page.png)
+
+---
+# About Page
+![About Page](/Images/About%20Page.png)
+
+---
+
+# Contact Page
+![Contact Page](/Images/Contact%20Us.png)
+
+---
+
+# Create Page
+![Create Page](/Images/Create%20Page.png)
+
+---
+
+# Making File / File Open Page
+#### This is a hidden page...
+![File Page](/Images/FILE%20PAGE.png)
