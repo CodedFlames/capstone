@@ -17,7 +17,16 @@ I want to build an application that processes your own words, turns them into a 
 
 ## Outline Of Content
 - ### what do i want on each page?
-- - Simplicity, Easy to navigate and clutter free.
+- - Home
+- - - I want quick access to open files
+- - about
+- - - information about how site was made
+- - contact
+- - - Easy form for contacting
+- - create
+- - - unique generation of code
+- - Making File
+- - - quick editing then offical posting of code
 
 <br>
 
@@ -41,13 +50,21 @@ I want to build an application that processes your own words, turns them into a 
 <br>
 
 ### Color Palette
+
 > black <em>`020300`</em>
+
 <br>
+
 > cultured <em>`F5F5F5`</em>
+
 <br>
+
 > white <em>`FCFCFC`</em>
+
 <br>
+
 > Rosso-Corsa <em>`CD2913`</em>
+
 
 <br>
 
