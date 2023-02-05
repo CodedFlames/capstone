@@ -1,0 +1,42 @@
+/* Color Palette #020300 , #FFC7C7  , #D1D1D1  , #C00A0A */
+
+
+
+
+
+/* ID STYLES */
+
+html {
+  background-color: #FFC7C7;
+}
+
+
+#TitleCard {
+  background-color: #C00A0A;
+  text-align: center;
+  font-size: 75px;
+  margin-top: -93px;
+
+}
+
+
+
+
+/* CLASS STYLES */
+
+.black {
+  color: #020300;
+}
+
+.pinkish {
+  color: #FFC7C7;
+}
+
+.white {
+  color: #D1D1D1
+}
+
+.red {
+  color: #C00A0A;
+}
+
