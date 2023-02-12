@@ -49,21 +49,25 @@ I want to build an application that processes your own words, turns them into a 
 
 <br>
 
+
 ### Color Palette
-
-> black <em>`020300`</em>
-
-<br>
-
-> cultured <em>`F5F5F5`</em>
+###### updated
 
 <br>
 
-> white <em>`FCFCFC`</em>
+> <em>`#5e1400`</em>
 
 <br>
 
-> Rosso-Corsa <em>`CD2913`</em>
+> <em>`#c9c9c9`</em>
+
+<br>
+
+> <em>`#ffffff`</em>
+
+<br>
+
+ > <em>`#ff0000`</em>
 
 
 <br>

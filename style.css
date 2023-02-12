@@ -10,6 +10,11 @@
 
 /* Media Queries */
 @media (max-width: 1280px){
+  #TitleCard {
+    width: 100% !important;
+    margin: auto !important;
+    padding: auto !important;
+  }
   #Title {
     font-size: 45px !important;
   }
@@ -17,6 +22,10 @@
     gap: 3% !important;
     padding: 0 5% !important;
     flex-direction: column !important;
+    width: 60% !important;
+  }
+  #ContactPage, textarea {
+    font-size: 13px !important;
   }
 }
 
@@ -41,21 +50,21 @@ a{
 }
 
 #Title {
-  font-size: 80px;
-  margin: 0%;
+  font-size: 90px;
+  margin: -4%;
 }
 
 #navOptions {
   display: flex;
-  font-size: 26px;
+  font-size: 23px;
   flex-direction: row;
   gap: 50%;
   justify-content: center;
-  padding: 0% 35%;
 }
 
 #Home,#About,#Contact,#Create{
   padding: 2%;
+  margin: 5%;
   background-color: var(--black);
   border-radius: 9px;
   user-select: none;
@@ -68,10 +77,19 @@ a{
   color: var(--label);
   cursor: pointer;
   transition: transform .3s ease-in, box-shadow .3s ease-in, border-radius .3s ease-in, color .3s ease-in;
-};
+}
 
+#ContactPage, #ContactPage > form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
 
-
+textarea{
+  font-size: 25px;
+  margin: 2%;
+}
 
 /* CLASS STYLES */
 .black {
@@ -90,3 +108,14 @@ a{
   color: var(--label);
 }
 
+.medium {
+  font-size: 200%;
+}
+
+.big {
+  font-size: 300%;
+}
+
+.bigger {
+  font-size: 500%;
+}
