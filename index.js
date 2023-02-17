@@ -1,8 +1,23 @@
-let home = document.querySelector("#Home");
-let about = document.querySelector("#About");
-let contact = document.querySelector("#Contact");
-let create = document.querySelector("#Create");
+import * as store from "./store";
+import { Head, Nav, Main } from "./components";
+import Navigo from "navigo";
+import { capitalize } from "lodash";
 
+const router = new Navigo("/");
 
+function render(state = store.Home) {
+  document.querySelector("#root").innerHTML = `
+  ${Head()}
+  ${Nav()}
+  ${Main()}`;
+}
 
-
+router
+  .on({
+    "/": () => render(),
+    ":view": params => {
+      let view = capitalize(params.data.view);
+      render(store[view]);
+    }
+  })
+  .resolve();
