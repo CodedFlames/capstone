@@ -1,3 +1,6 @@
+* {
+  font-family: Noto Serif Toto;
+}
 
 /* Color Palette */
 :root {
@@ -6,6 +9,60 @@
   --white: #ffffff;
   --label: #ff0000;
 }
+
+/* Utility classes */
+.textcenter {
+  text-align: center;
+}
+
+.flexcontainer {
+  display: flex;
+}
+
+.flexcenter {
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  align-content: center;
+}
+
+.flexcol {
+  flex-flow: column nowrap;
+}
+
+.flexrow {
+  flex-flow: row nowrap;
+}
+
+.gap {
+  gap: 4.5%;
+}
+.biggap {
+  gap: 10%;
+}
+
+.bigspace {
+  margin: 5%;
+}
+
+.space {
+  margin: 2%;
+}
+
+/*
+* {
+  border: solid green;
+} */
+
+.hoverabove:hover{
+  transform: scale(120%,120%);
+  border-radius: 2px;
+  box-shadow: 3px 3px 10px black;
+  color: var(--label);
+  cursor: pointer;
+  transition: transform .3s ease-in, box-shadow .3s ease-in, border-radius .3s ease-in, color .3s ease-in;
+}
+
 
 
 /* Media Queries */
@@ -29,7 +86,7 @@
   }
 }
 
-@media (min-width: 1900px){
+@media (min-width: 1600px){
   #Title {
     margin: -4% !important;
   }
@@ -47,11 +104,7 @@ a{
 }
 
 #TitleCard {
-  display: flex;
   background-color: var(--label);
-  width: 100%;
-  align-items: center;
-  flex-direction: column;
 }
 
 #Title {
@@ -60,11 +113,7 @@ a{
 }
 
 #navOptions {
-  display: flex;
   font-size: 23px;
-  flex-direction: row;
-  gap: 50%;
-  justify-content: center;
 }
 
 #Home,#About,#Contact,#Create{
@@ -75,28 +124,30 @@ a{
   user-select: none;
 }
 
-#Home:hover,#About:hover,#Contact:hover,#Create:hover{
-  transform: scale(120%,120%);
-  border-radius: 2px;
-  box-shadow: 3px 3px 10px black;
-  color: var(--label);
-  cursor: pointer;
-  transition: transform .3s ease-in, box-shadow .3s ease-in, border-radius .3s ease-in, color .3s ease-in;
-}
-
-#ContactPage, #ContactPage > form {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-}
-
 textarea{
   font-size: 25px;
   margin: 2%;
 }
 
-/* CLASS STYLES */
+
+/* #Home:hover,#About:hover,#Contact:hover,#Create:hover{
+  transform: scale(120%,120%);
+  border-radius: 2px;
+  box-shadow: 3px 3px 10px black;       REPLACED WITH UTILITY CLASSES
+  color: var(--label);
+  cursor: pointer;
+  transition: transform .3s ease-in, box-shadow .3s ease-in, border-radius .3s ease-in, color .3s ease-in;
+} */
+
+/* #ContactPage, #ContactPage > form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;   REPLACED WITH UTILITY CLASSES
+  align-items: center;
+} */
+
+/* CLASS STYLE CHANGERS */
+
 .black {
   color: var(--black);
 }

@@ -6,10 +6,10 @@ import { capitalize } from "lodash";
 const router = new Navigo("/");
 
 function render(state = store.Home) {
+  document.querySelector("#meta").innerHTML += `${Head(state)}`;
   document.querySelector("#root").innerHTML = `
-  ${Head()}
-  ${Nav()}
-  ${Main()}`;
+  ${Nav(store.Links)}
+  ${Main(state)}`;
 }
 
 router
