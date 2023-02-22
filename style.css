@@ -11,6 +11,16 @@
 }
 
 /* Utility classes */
+
+.hideOnDesktop{
+  visibility: hidden;
+}
+
+.hideOnMobile {
+  visibility: visible;
+}
+
+
 .textcenter {
   text-align: center;
 }
@@ -67,6 +77,15 @@
 
 /* Media Queries */
 @media (max-width: 1000px){
+  .hideOnDesktop{
+    visibility: visible !important;
+  }
+  .hideOnMobile {
+    visibility: hidden !important;
+  }
+  #navBars {
+
+  }
   #TitleCard {
     width: 100% !important;
     margin: auto !important;
@@ -115,6 +134,11 @@ a{
 #navOptions {
   font-size: 23px;
 }
+
+#navBars {
+  font-size: 300%;
+}
+
 
 #Home,#About,#Contact,#Create{
   padding: 2%;

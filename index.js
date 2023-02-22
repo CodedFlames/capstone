@@ -10,6 +10,24 @@ function render(state = store.Home) {
   document.querySelector("#root").innerHTML = `
   ${Nav(store.Links)}
   ${Main(state)}`;
+  router.updatePageLinks();
+  afterRender();
+}
+
+function afterRender() {
+  console.log("In afterRender.");
+  let barr = document.querySelector("#navBars");
+  let barrOpen = false;
+  barr.addEventListener("click", () => {
+    if (!barrOpen) {
+      barrOpen = true;
+      barr.innerHTML = "close";
+      console.log("OOPEN");
+    } else {
+      barrOpen = false;
+      barr.innerHTML = "menu";
+    }
+  });
 }
 
 router

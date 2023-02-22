@@ -5,7 +5,13 @@ export default links => html`
     <div id="Title">
       <h1>Lock-It</h1>
     </div>
-    <div id="navOptions" class="flexcontainer flexrow flexcenter biggap">
+    <div
+      id="navOptions"
+      class="flexcontainer flexrow flexcenter biggap hideOnMobile"
+    >
+      <span class="material-symbols-outlined hideOnDesktop" id="navBars">
+        menu
+      </span>
       ${links
         .map(
           item =>
