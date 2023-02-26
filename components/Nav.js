@@ -5,19 +5,24 @@ export default links => html`
     <div id="Title">
       <h1>Lock-It</h1>
     </div>
-    <div
-      id="navOptions"
-      class="flexcontainer flexrow flexcenter biggap hideOnMobile"
-    >
-      <span class="material-symbols-outlined hideOnDesktop" id="navBars">
+    <div id="navOptions" class="flexcontainer flexcol flexcenter">
+      <span
+        class="material-symbols-outlined hideOnDesktop giantspace"
+        id="navBars"
+      >
         menu
       </span>
-      ${links
-        .map(
-          item =>
-            `<h2 class="hoverabove"id="${item.id}"><a href="/${item.id}">${item.id}</a></h2>`
-        )
-        .join("")}
+      <div
+        id="navLinks"
+        class="hideOnMobile flexcontainer flexrow flexcenter gap"
+      >
+        ${links
+          .map(
+            item =>
+              `<h2 class="hoverabove"id="${item.id}"><a href="/${item.id}"data-navigo>${item.id}</a></h2>`
+          )
+          .join("")}
+      </div>
       <!-- <h2 id="Home"><a href="./index.html">Home</a></h2>
       <h2 id="About"><a href="./about.html">About</a></h2>
       <h2 id="Contact"><a href="./contact.html">Contact</a></h2>

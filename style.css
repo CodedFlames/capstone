@@ -11,6 +11,16 @@
 }
 
 /* Utility classes */
+.button {
+  background-color: var(--black);
+  color: var(--white);
+  border-radius: 10px;
+}
+
+.inputBar{
+  border-radius: 100px;
+  color: var(--label);
+}
 
 .hideOnDesktop{
   visibility: hidden;
@@ -51,6 +61,10 @@
   gap: 10%;
 }
 
+.giantspace {
+  margin: 15%;
+}
+
 .bigspace {
   margin: 5%;
 }
@@ -76,15 +90,17 @@
 
 
 /* Media Queries */
-@media (max-width: 1000px){
+@media (max-width: 900px){
   .hideOnDesktop{
     visibility: visible !important;
+    display: block;
   }
   .hideOnMobile {
     visibility: hidden !important;
+    display: none !important;
   }
   #navBars {
-
+    margin-top: 30% !important;
   }
   #TitleCard {
     width: 100% !important;
@@ -100,12 +116,20 @@
     flex-direction: column !important;
     width: 60% !important;
   }
+  #navLinks {
+    width: 50% !important;
+    text-align: center;
+    flex-direction: column !important;
+  }
   #ContactPage, textarea {
     font-size: 13px !important;
   }
 }
 
 @media (min-width: 1600px){
+  #navLinks {
+    margin-top: 23% !important;
+  }
   #Title {
     margin: -4% !important;
   }
@@ -133,13 +157,14 @@ a{
 
 #navOptions {
   font-size: 23px;
+  margin-top: -15%;
 }
 
 #navBars {
   font-size: 300%;
+  user-select: none;
+  text-decoration: none;
 }
-
-
 #Home,#About,#Contact,#Create{
   padding: 2%;
   margin: 5%;
