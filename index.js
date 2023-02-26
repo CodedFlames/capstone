@@ -61,8 +61,9 @@ function afterRender() {
   });
 
   // openSubmit.addEventListener("openSubmit");
-  createSubmit.addEventListener("click", () => scripts.Gen.genkey("Max."));
-  scripts.Gen.genkey("Test");
+  createSubmit.addEventListener("click", () =>
+    scripts.genkey(document.querySelector("#userField").innerHTML)
+  );
 }
 
 router

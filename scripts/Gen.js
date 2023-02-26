@@ -49,7 +49,7 @@ export function genkey(txt) {
   return genkeyr;
 }
 
-function globalCount() {
+export function globalCount() {
   storeHome.totalFiles++;
   console.log("Global Count Up;", gcount);
 }
