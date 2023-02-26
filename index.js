@@ -4,6 +4,7 @@ import { Head, Nav, Main } from "./components";
 import Navigo from "navigo";
 import { capitalize } from "lodash";
 import dotenv from "dotenv";
+import axios from "axios";
 
 const router = new Navigo("/");
 
@@ -24,8 +25,23 @@ router.hooks({
         : "Home";
     // Add a switch case statement to handle multiple routes
     switch (view) {
-      case "Create":
+      case "Home":
+        axios
+          .get(
+            `https://api.openweathermap.org/data/2.5/weather?q=st%20louis&appid=${process.env.WEATHER_API_KEY}`
+          )
+          .then(response => {
+            const kelvinToFahrenheit = kelvinTemp =>
+              Math.round((kelvinTemp - 273.15) * (9 / 5) + 32);
+            store.Home.weather = {};
+            store.Home.weather.temp = kelvinToFahrenheit(
+              response.data.main.temp
+            );
+            store.Home.weather.wind = response.data.wind.speed;
+          })
+          .catch(err => console.log(err));
         done();
+        break;
       default:
         done();
     }
@@ -41,7 +57,6 @@ router.hooks({
 });
 
 function afterRender() {
-  let createSubmit = document.querySelector("#submitFile");
   let openSubmit = document.querySelector("#submitCode");
 
   // NAVBARS
@@ -61,9 +76,10 @@ function afterRender() {
   });
 
   // openSubmit.addEventListener("openSubmit");
-  createSubmit.addEventListener("click", () =>
-    scripts.genkey(document.querySelector("#userField").innerHTML)
-  );
+  // let createSubmit = document.querySelector("#submitFile");
+  // createSubmit.addEventListener("click", () =>
+  //   scripts.genkey(document.querySelector("#userField").value)
+  // );
 }
 
 router

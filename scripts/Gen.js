@@ -1,10 +1,8 @@
 import { default as data } from "./Vault";
-import { default as storeHome } from "./../store/Home";
-import { default as storage } from "./../store/Storage";
+import * as store from "./../store";
 import dotenv from "dotenv";
 
-let gcount = storeHome.totalFiles;
-
+// next steps, potentially change to object that stores the text data.
 let globalVar = process.env.GLOBAL_VAR;
 
 export function grabdata() {
@@ -39,19 +37,20 @@ export function genkey(txt) {
   let scramuser = scramble(txt);
   let encrypt = grabdata();
   genkey = scramble(encrypt[0] + encrypt[1] + scramuser + encrypt[2]);
-  genkey = genkey.replace(/\s+/g, ""); //replace all spaces.
+  genkey = genkey.replace(/\s+/g, ""); //replace all spaces. (regex )
   genkey = scramble(genkey);
   genkeyr = genkey;
   genkey += globalVar;
   let block = [SYPH(genkey)];
-  storage.push(block);
+  store.Storage.push(block);
   console.log("YOUR GENKEY;", genkeyr);
   return genkeyr;
 }
 
 export function globalCount() {
-  storeHome.totalFiles++;
-  console.log("Global Count Up;", gcount);
+  store.Storage.forEach(item => console.log(item)); //debug.
+  store.Home.totalFiles++;
+  console.log("Global Count Up;", store.Home.totalFiles); //debug.
 }
 
 export function validate(String) {
@@ -67,5 +66,5 @@ export function validate(String) {
     .splice(-vl, vl)
     .join("");
   StringC === globalVar ? (validQ = true) : (validQ = false);
-  return validQ ? StringB : console.log("false");
+  return validQ ? StringB : console.log("Illegal Storage implementation");
 }

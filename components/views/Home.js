@@ -3,6 +3,10 @@ import html from "html-literal";
 export default store =>
   html`
     <div class="flexcontainer flexcenter flexcol">
+      <h3>
+        It is currently ${store.weather.temp} F outside with a wind speed of
+        ${store.weather.wind}
+      </h3>
       <h1 class="bigger black">
         ${store.topper}
       </h1>
@@ -11,7 +15,7 @@ export default store =>
           type="text"
           class="big inputBar textcenter"
           id="CODE"
-          placeholder="Jmns91lmax"
+          placeholder="itoetouotKltsleJtrFix"
         />
         <input
           type="button"
