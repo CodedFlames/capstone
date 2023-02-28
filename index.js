@@ -25,6 +25,7 @@ router.hooks({
         : "Home";
     // Add a switch case statement to handle multiple routes
     switch (view) {
+      case "/":
       case "Home":
         axios
           .get(
@@ -37,7 +38,8 @@ router.hooks({
             store.Home.weather.temp = kelvinToFahrenheit(
               response.data.main.temp
             );
-            store.Home.weather.wind = response.data.wind.speed;
+            const msToMph = MS => Math.round(MS * 2.237);
+            store.Home.weather.wind = msToMph(response.data.wind.speed);
           })
           .catch(err => console.log(err));
         done();
@@ -51,14 +53,17 @@ router.hooks({
       params && params.data && params.data.view
         ? capitalize(params.data.view)
         : "Home";
-
+    switch (view) {
+      case "About":
+        console.log("YOU ARE ON THE ABOUT PAGE");
+        break;
+    }
     render(store[view]);
   }
 });
 
 function afterRender() {
   let openSubmit = document.querySelector("#submitCode");
-
   // NAVBARS
   console.log("In afterRender.");
   let barr = document.querySelector("#navBars");

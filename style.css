@@ -11,6 +11,17 @@
 }
 
 /* Utility classes */
+
+.dynamic-half{
+  width: 50vw;
+  height: 50vh;
+}
+
+.dynamic-full{
+  width: 100vw;
+  height: 100vh;
+}
+
 .button {
   background-color: var(--black);
   color: var(--white);
@@ -91,6 +102,13 @@
 
 /* Media Queries */
 @media (max-width: 900px){
+  .dynamic-mobile-full {
+    width: 100vw !important;
+    height: auto !important;
+  }
+  /* .inputBar{
+    width: 98% !important;
+  } */
   .hideOnDesktop{
     visibility: visible !important;
     display: block;
@@ -120,9 +138,6 @@
     width: 50% !important;
     text-align: center;
     flex-direction: column !important;
-  }
-  #ContactPage, textarea {
-    font-size: 13px !important;
   }
 }
 
@@ -173,27 +188,7 @@ a{
   user-select: none;
 }
 
-textarea{
-  font-size: 25px;
-  margin: 2%;
-}
 
-
-/* #Home:hover,#About:hover,#Contact:hover,#Create:hover{
-  transform: scale(120%,120%);
-  border-radius: 2px;
-  box-shadow: 3px 3px 10px black;       REPLACED WITH UTILITY CLASSES
-  color: var(--label);
-  cursor: pointer;
-  transition: transform .3s ease-in, box-shadow .3s ease-in, border-radius .3s ease-in, color .3s ease-in;
-} */
-
-/* #ContactPage, #ContactPage > form {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;   REPLACED WITH UTILITY CLASSES
-  align-items: center;
-} */
 
 /* CLASS STYLE CHANGERS */
 
@@ -223,4 +218,12 @@ textarea{
 
 .bigger {
   font-size: 500%;
+}
+
+.small {
+  font-size: 100%;
+}
+
+.micro {
+  font-size: 50%;
 }
