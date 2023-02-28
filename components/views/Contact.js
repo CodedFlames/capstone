@@ -20,8 +20,8 @@ export default store =>
           required
         />
         <textarea
-          class="medium textcenter"
-          rows="10"
+          class="small textcenter dynamic-mobile-full dynamic-half"
+          rows="15"
           cols="50"
           name="MAIL"
           id="MAIL"
