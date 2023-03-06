@@ -27,6 +27,7 @@ router.hooks({
     switch (view) {
       case "/":
       case "Home":
+        //axios
         axios
           .get(
             `https://api.openweathermap.org/data/2.5/weather?q=st%20louis&appid=${process.env.WEATHER_API_KEY}`
@@ -42,6 +43,7 @@ router.hooks({
             store.Home.weather.wind = msToMph(response.data.wind.speed);
           })
           .catch(err => console.log(err));
+        //axios
         done();
         break;
       default:
@@ -53,17 +55,11 @@ router.hooks({
       params && params.data && params.data.view
         ? capitalize(params.data.view)
         : "Home";
-    switch (view) {
-      case "About":
-        console.log("YOU ARE ON THE ABOUT PAGE");
-        break;
-    }
     render(store[view]);
   }
 });
 
 function afterRender() {
-  let openSubmit = document.querySelector("#submitCode");
   // NAVBARS
   console.log("In afterRender.");
   let barr = document.querySelector("#navBars");
@@ -80,11 +76,11 @@ function afterRender() {
     }
   });
 
-  // openSubmit.addEventListener("openSubmit");
-  // let createSubmit = document.querySelector("#submitFile");
-  // createSubmit.addEventListener("click", () =>
-  //   scripts.genkey(document.querySelector("#userField").value)
-  // );
+  let createSubmit = document.querySelector("#submitFile");
+  createSubmit.addEventListener("click", () => {
+    scripts.genkey(document.querySelector("#userField").value); //Makes the genkey from scripts
+    render(store["Makefile"]);
+  });
 }
 
 router

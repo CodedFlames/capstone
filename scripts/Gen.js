@@ -41,8 +41,9 @@ export function genkey(txt) {
   genkey = scramble(genkey);
   genkeyr = genkey;
   genkey += globalVar;
-  let block = [SYPH(genkey)];
+  let block = [SYPH(genkey)]; //push to some sort of storage #1 - issue.
   store.Storage.push(block);
+  store.Makefile.KEY = genkeyr; //push to making file page.
   console.log("YOUR GENKEY;", genkeyr);
   return genkeyr;
 }
