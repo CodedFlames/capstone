@@ -1,5 +1,4 @@
 import * as store from "./store";
-import * as scripts from "./scripts";
 import { Head, Nav, Main } from "./components";
 import Navigo from "navigo";
 import { capitalize } from "lodash";
@@ -13,7 +12,7 @@ function render(state = store.Home) {
   document.querySelector("#root").innerHTML = `
   ${Nav(store.Links)}
   ${Main(state)}`;
-  afterRender();
+  afterRender(state);
   router.updatePageLinks();
 }
 
@@ -44,7 +43,7 @@ router.hooks({
           })
           .catch(err => console.log(err));
         //axios
-        done();
+        done(); //tell navigo im done here.
         break;
       default:
         done();
@@ -59,7 +58,7 @@ router.hooks({
   }
 });
 
-function afterRender() {
+function afterRender(state) {
   // NAVBARS
   console.log("In afterRender.");
   let barr = document.querySelector("#navBars");
@@ -75,12 +74,11 @@ function afterRender() {
       document.querySelector("#navLinks").classList.toggle("hideOnMobile");
     }
   });
-
-  let createSubmit = document.querySelector("#submitFile");
-  createSubmit.addEventListener("click", () => {
-    scripts.genkey(document.querySelector("#userField").value); //Makes the genkey from scripts
-    render(store["Makefile"]);
-  });
+  // View Switches (If statements)
+  switch (state.view) {
+    case "Create":
+      break;
+  }
 }
 
 router

@@ -1,4 +1,4 @@
-export default [
+const data = [
   "Alpha",
   "Bravo",
   "Charlie",
@@ -26,3 +26,5 @@ export default [
   "Yankee",
   "Zulu"
 ];
+
+module.exports = data;
