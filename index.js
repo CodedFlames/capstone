@@ -8,10 +8,18 @@ import axios from "axios";
 const router = new Navigo("/");
 
 function render(state = store.Home) {
+  if (state["view"] === "Home") {
+    axios.get(process.env.NASAURLKEY).then(Res => {
+      store["Home"].photoTitle = Res.data.title;
+      store["Home"].photoUrl = Res.data.hdurl;
+      store["Home"].photoText = Res.data.explanation;
+    });
+  }
   document.querySelector("#meta").innerHTML += `${Head(state)}`;
   document.querySelector("#root").innerHTML = `
   ${Nav(store.Links)}
   ${Main(state)}`;
+
   afterRender(state);
   router.updatePageLinks();
 }
@@ -27,21 +35,7 @@ router.hooks({
       case "/":
       case "Home":
         //axios
-        axios
-          .get(
-            `https://api.openweathermap.org/data/2.5/weather?q=st%20louis&appid=${process.env.WEATHER_API_KEY}`
-          )
-          .then(response => {
-            const kelvinToFahrenheit = kelvinTemp =>
-              Math.round((kelvinTemp - 273.15) * (9 / 5) + 32);
-            store.Home.weather = {};
-            store.Home.weather.temp = kelvinToFahrenheit(
-              response.data.main.temp
-            );
-            const msToMph = MS => Math.round(MS * 2.237);
-            store.Home.weather.wind = msToMph(response.data.wind.speed);
-          })
-          .catch(err => console.log(err));
+
         //axios
         done(); //tell navigo im done here.
         break;
@@ -76,7 +70,7 @@ function afterRender(state) {
   });
   // View Switches (If statements)
   switch (state.view) {
-    case "Create":
+    case "Home":
       break;
   }
 }

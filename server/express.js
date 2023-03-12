@@ -3,6 +3,7 @@ const app = express();
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const scripts = require("./scripts/genkey");
+const storing = require("./routes/storing");
 
 dotenv.config();
 
@@ -21,7 +22,7 @@ const PORT = process.env.PORT || 4040;
 // Middleware below;;
 // *****************
 
-function logging(Req, Res, Next) {
+function log(Req, Res, Next) {
   console.log(`${Req.method} ${Req.url} ${Date.now()}`);
   Next();
 }
@@ -45,7 +46,7 @@ const cors = (req, res, next) => {
 // *****************
 app.use(cors); //always use CORS first if defined.
 app.use(express.json());
-app.use(logging);
+app.use(log);
 
 app.get("/status", (Req, Res) => {
   Res.send(`<h1 style="text-align: center;">Status Healthy</h1>`);
@@ -57,4 +58,5 @@ app.get("/genkey/:text", (Req, Res) => {
   Res.status(200).json({ genkey: scrm });
 });
 
+app.use("/storing", storing);
 app.listen(PORT, () => console.log(`Listening on Port ${PORT}`));
