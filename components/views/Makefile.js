@@ -4,7 +4,7 @@ export default store => html`
   <section class="flexcontainer flexcenter flexcol textcenter">
     <h1 class="black bigger textcenter">${store.topper}</h1>
     <h4 class="medium black">${store.KEY}</h4>
-    <form class="flexcontainer flexcenter flexcol">
+    <form id="Creating" class="flexcontainer flexcenter flexcol">
       <textarea
         id="editField"
         class="dynamic-mobile-full dynamic-Qfull medium"
@@ -12,7 +12,7 @@ export default store => html`
         rows="25"
       ></textarea>
       <input
-        type="button"
+        type="submit"
         class="button big hoverabove bigspace"
         value="Done"
       />

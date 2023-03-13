@@ -222,6 +222,18 @@ a{
   color: var(--label);
 }
 
+.micro {
+  font-size: 50%;
+}
+
+.small {
+  font-size: 100%;
+}
+
+.small-medium{
+  font-size: 150%;;
+}
+
 .medium {
   font-size: 200%;
 }
@@ -234,10 +246,5 @@ a{
   font-size: 500%;
 }
 
-.small {
-  font-size: 100%;
-}
 
-.micro {
-  font-size: 50%;
-}
+

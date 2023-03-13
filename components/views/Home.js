@@ -15,7 +15,7 @@ export default store =>
           placeholder="itoetouotKltsleJtrFix"
         />
         <input
-          type="button"
+          type="submit"
           class="button medium hoverabove bigspace bigspace"
           value="submit"
           id="submitCode"
