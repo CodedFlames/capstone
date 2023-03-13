@@ -2,6 +2,8 @@ export default {
   title: "Lock-It",
   topper: "Open a file.",
   view: "Home",
-  totalFiles: 0,
-  weather: {}
+  totalkeys: 0,
+  photoTitle: "",
+  photoUrl: "",
+  photoText: ""
 };

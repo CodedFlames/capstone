@@ -4,13 +4,23 @@
 
 /* Color Palette */
 :root {
-  --black: #5e1400;
+  --black: #022702;
   --background: #c9c9c9;
   --white: #ffffff;
-  --label: #ff0000;
+  --label: #0d860d;
 }
 
 /* Utility classes */
+
+.dynamic-Q{
+  width: 25vw;
+  height: 25vh;
+}
+
+.dynamic-Qfull{
+  width: 75vw;
+  height: 75vh;
+}
 
 .dynamic-half{
   width: 50vw;
@@ -161,11 +171,15 @@ a{
   text-decoration: none;
 }
 
+#editField {
+  border-radius: 15px;
+}
+
 #TitleCard {
   background-color: var(--label);
 }
 
-#Title {
+  #Title {
   font-size: 90px;
   margin: -9%;
 }

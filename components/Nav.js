@@ -1,7 +1,10 @@
 import html from "html-literal";
 
 export default links => html`
-  <nav id="TitleCard" class="white flexcontainer flexcol flexcenter">
+  <nav
+    id="TitleCard"
+    class="white flexcontainer flexcol flexcenter dynamic-mobile-full"
+  >
     <div id="Title">
       <h1>Lock-It</h1>
     </div>

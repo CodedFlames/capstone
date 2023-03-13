@@ -11,7 +11,7 @@ export default store =>
       >
         <label for="email" class="medium">Your email</label>
         <input
-          class="space textcenter"
+          class="space textcenter big dynamic-mobile-full"
           type="email"
           placeholder="Johndoe@mail.com"
           id="email"
@@ -20,7 +20,7 @@ export default store =>
           required
         />
         <textarea
-          class="small textcenter dynamic-mobile-full dynamic-half"
+          class="big textcenter dynamic-mobile-full dynamic-half"
           rows="15"
           cols="50"
           name="MAIL"
@@ -28,7 +28,11 @@ export default store =>
           placeholder="Tell us all about your side!"
           required
         ></textarea>
-        <input type="submit" class="medium" style="margin: 2%;" />
+        <input
+          type="submit"
+          class="medium hoverabove button"
+          style="margin: 2%;"
+        />
       </form>
     </section>
   `;

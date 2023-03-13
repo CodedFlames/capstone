@@ -1,5 +1,4 @@
 import * as store from "./store";
-import * as scripts from "./scripts";
 import { Head, Nav, Main } from "./components";
 import Navigo from "navigo";
 import { capitalize } from "lodash";
@@ -13,59 +12,13 @@ function render(state = store.Home) {
   document.querySelector("#root").innerHTML = `
   ${Nav(store.Links)}
   ${Main(state)}`;
-  afterRender();
+  afterRender(state);
   router.updatePageLinks();
 }
 
-router.hooks({
-  before: (done, params) => {
-    const view =
-      params && params.hasOwnProperty("page")
-        ? capitalize(params.page)
-        : "Home";
-    // Add a switch case statement to handle multiple routes
-    switch (view) {
-      case "/":
-      case "Home":
-        axios
-          .get(
-            `https://api.openweathermap.org/data/2.5/weather?q=st%20louis&appid=${process.env.WEATHER_API_KEY}`
-          )
-          .then(response => {
-            const kelvinToFahrenheit = kelvinTemp =>
-              Math.round((kelvinTemp - 273.15) * (9 / 5) + 32);
-            store.Home.weather = {};
-            store.Home.weather.temp = kelvinToFahrenheit(
-              response.data.main.temp
-            );
-            const msToMph = MS => Math.round(MS * 2.237);
-            store.Home.weather.wind = msToMph(response.data.wind.speed);
-          })
-          .catch(err => console.log(err));
-        done();
-        break;
-      default:
-        done();
-    }
-  },
-  already: params => {
-    const view =
-      params && params.data && params.data.view
-        ? capitalize(params.data.view)
-        : "Home";
-    switch (view) {
-      case "About":
-        console.log("YOU ARE ON THE ABOUT PAGE");
-        break;
-    }
-    render(store[view]);
-  }
-});
-
-function afterRender() {
-  let openSubmit = document.querySelector("#submitCode");
+function afterRender(state) {
   // NAVBARS
-  console.log("In afterRender.");
+  // console.log("In afterRender."); //debug
   let barr = document.querySelector("#navBars");
   let barrOpen = false;
   barr.addEventListener("click", () => {
@@ -79,13 +32,44 @@ function afterRender() {
       document.querySelector("#navLinks").classList.toggle("hideOnMobile");
     }
   });
-
-  // openSubmit.addEventListener("openSubmit");
-  // let createSubmit = document.querySelector("#submitFile");
-  // createSubmit.addEventListener("click", () =>
-  //   scripts.genkey(document.querySelector("#userField").value)
-  // );
+  // View Switches (If statements)
+  switch (state.view) {
+    case "Home":
+      break;
+  }
 }
+
+router.hooks({
+  before: (done, params) => {
+    const view =
+      params && params.hasOwnProperty("page")
+        ? capitalize(params.page)
+        : "Home";
+    // Add a switch case statement to handle multiple routes
+    switch (view) {
+      case "Home":
+        //axios
+        axios.get(process.env.NASAURLKEY).then(Res => {
+          console.log("Tc's left;", Res.headers["x-ratelimit-remaining"]);
+          store["Home"].photoTitle = Res.data.title;
+          store["Home"].photoUrl = Res.data.hdurl;
+          store["Home"].photoText = Res.data.explanation;
+        });
+        //axios
+        done(); //tell navigo im done here.
+        break;
+      default:
+        done();
+    }
+  },
+  already: params => {
+    const view =
+      params && params.data && params.data.view
+        ? capitalize(params.data.view)
+        : "Home";
+    render(store[view]);
+  }
+});
 
 router
   .on({
