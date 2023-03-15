@@ -28,6 +28,7 @@ export default store => html`
         class="big inputBar textcenter dynamic-mobile-full"
         type="text"
         placeholder="I am a text field."
+        required
         id="userField"
       />
       <input

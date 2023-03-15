@@ -25,7 +25,7 @@ function beforeRender(state) {
 }
 
 function render(state = store.Home) {
-  beforeRender(state); //temporary fix?
+  // beforeRender(state); //temporary fix?
   document.querySelector("#meta").innerHTML += `${Head(state)}`;
   document.querySelector("#root").innerHTML = `
   ${Nav(store.Links)}
@@ -56,38 +56,65 @@ function afterRender(state) {
     document.querySelector("#Creating").addEventListener("submit", event => {
       event.preventDefault();
       console.log("EVENT CLICKED");
+      const inputs = event.target.elements;
+      console.log(inputs.numberOfOpens.value);
       axios
-        .get("https://lock-it.codedflames-apis.workers.dev/ping")
+        .get(
+          `https://lock-it-api.onrender.com/genkey/${inputs.userField.value}`
+        )
         .then(Res => {
-          store.Makefile.KEY = Res.data["PING"]; //short term memory loss.
-        });
+          store.Makefile.maskedKey = Res.data["genkey"];
+          store.Makefile.closeAt = inputs.numberOfOpens.value;
+          return Res.data["genkey"];
+        })
+        .then(Res => {
+          return (
+            // Res,
+            axios.get(`lock-it.codedflames-apis.workers.dev/validate/${Res}`)
+          );
+        })
+        .then((Res1, Res2) => {
+          console.log(Res1);
+          console.log(Res2);
+        })
+        .catch(E => console.log(E));
       router.navigate("/Makefile");
     });
   }
 }
 
-// router.hooks({
-//   before: (done, params) => {
-//     const view =
-//       params && params.hasOwnProperty("page")
-//         ? capitalize(params.page)
-//         : "Home";
-//     switch (view) {
-//       case "Home":
-//         console.log("IN HOME SWITCH");
-//       default:                             //code doesn't work
-//         done();                            //Making calls constantly on different pages when told not to.
-//     }
-//   },
-//   already: params => {
-//     const view =
-//       params && params.data && params.data.view
-//         ? capitalize(params.data.view)
-//         : "Home";
+router.hooks({
+  before: (done, params) => {
+    const view =
+      params && params.data && params.data.view
+        ? capitalize(params.data.view)
+        : "Home";
+    switch (view) {
+      case "Home":
+        console.log(`in ${view}`);
+        axios.get(process.env.NASAURLKEY).then(Res => {
+          console.log("IN AXIOS CALL, API CALL IS HAPPENING.");
+          console.log("Tc's left;", Res.headers["x-ratelimit-remaining"]);
+          store["Home"].photoTitle = Res.data.title;
+          store["Home"].photoUrl = Res.data.hdurl;
+          store["Home"].photoText = Res.data.explanation;
+          done();
+        });
+        break; //runs until break
+      default:
+        //code doesn't work
+        done(); //Making calls constantly on different pages when told not to.
+    }
+  },
+  already: params => {
+    const view =
+      params && params.data && params.data.view
+        ? capitalize(params.data.view)
+        : "Home";
 
-//     render(store[view]);
-//   }
-// });
+    render(store[view]);
+  }
+});
 
 router
   .on({
