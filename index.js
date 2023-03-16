@@ -55,30 +55,75 @@ function afterRender(state) {
   if (state.view === "Create") {
     document.querySelector("#Creating").addEventListener("submit", event => {
       event.preventDefault();
-      console.log("EVENT CLICKED");
       const inputs = event.target.elements;
-      console.log(inputs.numberOfOpens.value);
+      store.Makefile.closeAt = inputs.numberOfOpens.value;
       axios
-        .get(
-          `https://lock-it-api.onrender.com/genkey/${inputs.userField.value}`
-        )
-        .then(Res => {
-          store.Makefile.maskedKey = Res.data["genkey"];
-          store.Makefile.closeAt = inputs.numberOfOpens.value;
-          return Res.data["genkey"];
-        })
-        .then(Res => {
-          return (
-            // Res,
-            axios.get(`lock-it.codedflames-apis.workers.dev/validate/${Res}`)
+        .get(`${process.env.ON_RENDER}/genkey/${inputs.userField.value}`)
+        .then(res => {
+          // console.log(`render api; ${res.data}`);
+          store.Makefile.maskedKey = res.data["genkey"];
+          return axios.get(
+            `${process.env.CLOUDFLARE}/validate/${res.data["genkey"]}`
           );
         })
-        .then((Res1, Res2) => {
-          console.log(Res1);
-          console.log(Res2);
+        .then(response => {
+          // console.log(`cloudflare api; ${response.data}`);
+          store.Makefile.KEY = response.data["result"];
+          return true;
         })
-        .catch(E => console.log(E));
-      router.navigate("/Makefile");
+        .then(function done(boo) {
+          boo
+            ? router.navigate("/Makefile")
+            : console.log("Not able to navigate.");
+        });
+    });
+  } else if (state.view === "Makefile") {
+    document.querySelector("#Creating").addEventListener("submit", event => {
+      event.preventDefault();
+      inputs = event.target.elements;
+      if (confirm("are you sure? you can no longer edit it once posted.")) {
+        const postingblock = {
+          opens: 0,
+          closeAt: Number(store.Makefile.closeAt),
+          genkey: String(store.Makefile.KEY),
+          message: String(inputs.editField.value)
+        };
+        axios
+          .post(`${process.env.ON_RENDER}/storing`, postingblock)
+          .then(res => {
+            store.Openfile.data = [];
+            store.Openfile.data.push(res.data);
+            console.log(store.Openfile.data);
+            return true;
+          })
+          .then(function done(boo) {
+            boo
+              ? router.navigate("/Openfile")
+              : console.log("router can't navigate.");
+          });
+      } else {
+        alert("continue editing.");
+      }
+    });
+  } else if (state.view === "Home") {
+    document.querySelector("#openAFile").addEventListener("submit", event => {
+      event.preventDefault();
+      inputs = event.target.elements;
+      axios
+        .get(`${process.env.ON_RENDER}/storing/${inputs.CODE.value}`)
+        .then(res => {
+          console.log(res.data);
+          store.Openfile.data = [];
+          store.Openfile.data.push(res.data[0]);
+          return true;
+        })
+        .then(function done(boo) {
+          boo
+            ? router.navigate("/Openfile")
+            : console.log("router can't navigate");
+        })
+        .catch(e => router.navigate("/Deleted"));
+      return true;
     });
   }
 }
@@ -91,7 +136,6 @@ router.hooks({
         : "Home";
     switch (view) {
       case "Home":
-        console.log(`in ${view}`);
         axios.get(process.env.NASAURLKEY).then(Res => {
           console.log("IN AXIOS CALL, API CALL IS HAPPENING.");
           console.log("Tc's left;", Res.headers["x-ratelimit-remaining"]);
@@ -102,8 +146,8 @@ router.hooks({
         });
         break; //runs until break
       default:
-        //code doesn't work
-        done(); //Making calls constantly on different pages when told not to.
+        done();
+        break;
     }
   },
   already: params => {

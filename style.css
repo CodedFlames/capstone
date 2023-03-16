@@ -221,9 +221,17 @@ a{
   user-select: none;
 }
 
+#viewingfile {
+  background-color: black;
+  color: var(--white);
+}
+
 
 
 /* CLASS STYLE CHANGERS */
+.outline{
+  border: solid var(--label);
+}
 
 .black {
   color: var(--black);

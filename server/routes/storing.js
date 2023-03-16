@@ -37,7 +37,6 @@ route.get("/:genkey", (Request, Response) => {
         { genkey: `${genkeyval}` },
         {
           $set: {
-            // Take note that the customer is not included, so it can't
             opens: PLUS
           }
         },
