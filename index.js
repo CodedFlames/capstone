@@ -7,7 +7,25 @@ import axios from "axios";
 
 const router = new Navigo("/");
 
+function beforeRender(state) {
+  router.updatePageLinks();
+  switch (state.view) {
+    case "Home":
+      console.log("Home");
+      axios.get(process.env.NASAURLKEY).then(Res => {
+        console.log("Tc's left;", Res.headers["x-ratelimit-remaining"]);
+        store["Home"].photoTitle = Res.data.title;
+        store["Home"].photoUrl = Res.data.hdurl;
+        store["Home"].photoText = Res.data.explanation;
+      }); //Testing function beforeRender to replace router hooks
+      break;
+    case "About":
+      console.log("About");
+  }
+}
+
 function render(state = store.Home) {
+  // beforeRender(state); //temporary fix?
   document.querySelector("#meta").innerHTML += `${Head(state)}`;
   document.querySelector("#root").innerHTML = `
   ${Nav(store.Links)}
@@ -33,33 +51,103 @@ function afterRender(state) {
     }
   });
   // View Switches (If statements)
-  switch (state.view) {
-    case "Home":
-      break;
+  let inputs;
+  if (state.view === "Create") {
+    document.querySelector("#Creating").addEventListener("submit", event => {
+      event.preventDefault();
+      const inputs = event.target.elements;
+      store.Makefile.closeAt = inputs.numberOfOpens.value;
+      axios
+        .get(`${process.env.ON_RENDER}/genkey/${inputs.userField.value}`)
+        .then(res => {
+          // console.log(`render api; ${res.data}`);
+          store.Makefile.maskedKey = res.data["genkey"];
+          return axios.get(
+            `${process.env.CLOUDFLARE}/validate/${res.data["genkey"]}`
+          );
+        })
+        .then(response => {
+          // console.log(`cloudflare api; ${response.data}`);
+          store.Makefile.KEY = response.data["result"];
+          return true;
+        })
+        .then(function done(boo) {
+          boo
+            ? router.navigate("/Makefile")
+            : console.log("Not able to navigate.");
+        });
+    });
+  } else if (state.view === "Makefile") {
+    document.querySelector("#Creating").addEventListener("submit", event => {
+      event.preventDefault();
+      inputs = event.target.elements;
+      if (confirm("are you sure? you can no longer edit it once posted.")) {
+        const postingblock = {
+          opens: 0,
+          closeAt: Number(store.Makefile.closeAt),
+          genkey: String(store.Makefile.KEY),
+          message: String(inputs.editField.value)
+        };
+        axios
+          .post(`${process.env.ON_RENDER}/storing`, postingblock)
+          .then(res => {
+            store.Openfile.data = [];
+            store.Openfile.data.push(res.data);
+            console.log(store.Openfile.data);
+            return true;
+          })
+          .then(function done(boo) {
+            boo
+              ? router.navigate("/Openfile")
+              : console.log("router can't navigate.");
+          });
+      } else {
+        alert("continue editing.");
+      }
+    });
+  } else if (state.view === "Home") {
+    document.querySelector("#openAFile").addEventListener("submit", event => {
+      event.preventDefault();
+      inputs = event.target.elements;
+      axios
+        .get(`${process.env.ON_RENDER}/storing/${inputs.CODE.value}`)
+        .then(res => {
+          console.log(res.data);
+          store.Openfile.data = [];
+          store.Openfile.data.push(res.data[0]);
+          return true;
+        })
+        .then(function done(boo) {
+          boo
+            ? router.navigate("/Openfile")
+            : console.log("router can't navigate");
+        })
+        .catch(e => router.navigate("/Deleted"));
+      return true;
+    });
   }
 }
 
 router.hooks({
   before: (done, params) => {
     const view =
-      params && params.hasOwnProperty("page")
-        ? capitalize(params.page)
+      params && params.data && params.data.view
+        ? capitalize(params.data.view)
         : "Home";
-    // Add a switch case statement to handle multiple routes
     switch (view) {
       case "Home":
-        //axios
         axios.get(process.env.NASAURLKEY).then(Res => {
+          console.log("IN AXIOS CALL, API CALL IS HAPPENING.");
           console.log("Tc's left;", Res.headers["x-ratelimit-remaining"]);
           store["Home"].photoTitle = Res.data.title;
           store["Home"].photoUrl = Res.data.hdurl;
           store["Home"].photoText = Res.data.explanation;
+          done();
         });
-        //axios
-        done(); //tell navigo im done here.
-        break;
+        break; //runs until break
       default:
         done();
+        break;
     }
   },
   already: params => {
@@ -67,6 +155,7 @@ router.hooks({
       params && params.data && params.data.view
         ? capitalize(params.data.view)
         : "Home";
+
     render(store[view]);
   }
 });

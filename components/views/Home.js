@@ -7,7 +7,7 @@ export default store =>
       <h1 class="big black space">
         ${store.topper}
       </h1>
-      <form class="flexcontainer flexcol flexcenter">
+      <form id="openAFile" class="flexcontainer flexcol flexcenter">
         <input
           type="text"
           class="big inputBar textcenter dynamic-mobile-full space"
@@ -15,7 +15,7 @@ export default store =>
           placeholder="itoetouotKltsleJtrFix"
         />
         <input
-          type="button"
+          type="submit"
           class="button medium hoverabove bigspace bigspace"
           value="submit"
           id="submitCode"

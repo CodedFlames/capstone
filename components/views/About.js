@@ -1,4 +1,5 @@
 import html from "html-literal";
+import imgg from "../../assets/img/SavvyLogoNOBK.png";
 
 export default store => html`
   <h1 class="black bigger textcenter">${store.topper}</h1>
@@ -10,7 +11,13 @@ export default store => html`
       that you may find on the web... This site wouldn't exist with the many
       hours put into it built from the ground up.
     </p>
-    <img id="SAVLOGO" class="giantspace" src="" alt="savvy coders logo." />
+    <img
+      width="350vw"
+      id="SAVLOGO"
+      class="bigspace"
+      src="${imgg}"
+      alt="savvy coders logo."
+    />
     <p class="bigspace">
       Many thanks from the team behind savvy-coders for being so inspiring and
       helpful in the work of this project. Without them this wouldn't have been

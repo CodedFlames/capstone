@@ -12,6 +12,10 @@
 
 /* Utility classes */
 
+.noSelect{
+  user-select: none !important;
+}
+
 .dynamic-Q{
   width: 25vw;
   height: 25vh;
@@ -112,38 +116,51 @@
 
 /* Media Queries */
 @media (max-width: 900px){
+  .dynamic-mobile-Qfull {
+    width: 75vw !important;
+    height: auto !important;
+  }
+
   .dynamic-mobile-full {
     width: 100vw !important;
     height: auto !important;
   }
+
   /* .inputBar{
     width: 98% !important;
   } */
+
   .hideOnDesktop{
     visibility: visible !important;
     display: block;
   }
+
   .hideOnMobile {
     visibility: hidden !important;
     display: none !important;
   }
+
   #navBars {
     margin-top: 30% !important;
   }
+
   #TitleCard {
     width: 100% !important;
     margin: auto !important;
     padding: auto !important;
   }
+
   #Title {
     font-size: 45px !important;
   }
+
   #navOptions {
     gap: 3% !important;
     padding: 0 5% !important;
     flex-direction: column !important;
     width: 60% !important;
   }
+
   #navLinks {
     width: 50% !important;
     text-align: center;
@@ -172,7 +189,9 @@ a{
 }
 
 #editField {
-  border-radius: 15px;
+  border-radius: 5px;
+  background-color: black;
+  color: var(--white);
 }
 
 #TitleCard {
@@ -202,9 +221,17 @@ a{
   user-select: none;
 }
 
+#viewingfile {
+  background-color: black;
+  color: var(--white);
+}
+
 
 
 /* CLASS STYLE CHANGERS */
+.outline{
+  border: solid var(--label);
+}
 
 .black {
   color: var(--black);
@@ -222,6 +249,18 @@ a{
   color: var(--label);
 }
 
+.micro {
+  font-size: 50%;
+}
+
+.small {
+  font-size: 100%;
+}
+
+.small-medium{
+  font-size: 150%;;
+}
+
 .medium {
   font-size: 200%;
 }
@@ -234,10 +273,5 @@ a{
   font-size: 500%;
 }
 
-.small {
-  font-size: 100%;
-}
 
-.micro {
-  font-size: 50%;
-}
+

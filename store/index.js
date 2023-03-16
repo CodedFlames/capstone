@@ -5,3 +5,5 @@ export { default as About } from "./About";
 export { default as Create } from "./Create";
 export { default as Storage } from "./Storage";
 export { default as Makefile } from "./Makefile";
+export { default as Openfile } from "./Openfile";
+export { default as Deleted } from "./Deleted";
