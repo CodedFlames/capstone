@@ -21,7 +21,7 @@ export default store =>
           id="submitCode"
         />
       </form>
-      <h6 class="small">${store.totalFiles} Genkeys made...</h6>
+      <h6 class="small">Currently: ${store.currentKeys} genkeys in use</h6>
       <h4 class="textcenter medium bigspace">Fun nasa fact below!</h4>
       <h1>${store.photoTitle}</h1>
       <img

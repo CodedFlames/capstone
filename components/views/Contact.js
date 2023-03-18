@@ -11,7 +11,7 @@ export default store =>
       >
         <label for="email" class="medium">Your email</label>
         <input
-          class="space textcenter big dynamic-mobile-full"
+          class="space textcenter medium dynamic-mobile-Qfull"
           type="email"
           placeholder="Johndoe@mail.com"
           id="email"
@@ -20,7 +20,7 @@ export default store =>
           required
         />
         <textarea
-          class="big textcenter dynamic-mobile-full dynamic-half"
+          class="medium textcenter dynamic-mobile-full dynamic-half"
           rows="15"
           cols="50"
           name="MAIL"

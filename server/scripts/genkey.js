@@ -39,8 +39,8 @@ function genkey(txt) {
   genkey = scramble(encrypt[0] + encrypt[1] + scramuser + encrypt[2]);
   genkey = genkey.replace(/\s+/g, ""); //replace all spaces. (regex)
   genkey = scramble(genkey);
-  genkey += globalVar;
-  genkey = SYPH(genkey);
+  // genkey += globalVar;
+  // genkey = SYPH(genkey);
   return genkey;
 }
 
