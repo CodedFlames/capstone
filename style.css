@@ -12,6 +12,10 @@
 
 /* Utility classes */
 
+.linkBreak{
+  word-break: break-all !important;
+}
+
 .noSelect{
   user-select: none !important;
 }
@@ -72,11 +76,19 @@
 }
 
 .flexcol {
-  flex-flow: column nowrap;
+  flex-direction: column;
 }
 
 .flexrow {
-  flex-flow: row nowrap;
+  flex-direction: row;
+}
+
+.flexwrap {
+  flex-wrap: wrap;
+}
+
+.flexnowrap {
+  flex-wrap: nowrap;
 }
 
 .gap {
@@ -126,10 +138,6 @@
     height: auto !important;
   }
 
-  /* .inputBar{
-    width: 98% !important;
-  } */
-
   .hideOnDesktop{
     visibility: visible !important;
     display: block;
@@ -138,6 +146,24 @@
   .hideOnMobile {
     visibility: hidden !important;
     display: none !important;
+  }
+
+  #makeKey{
+    font-size: 150% !important;
+    word-break: break-all !important;
+  }
+
+  #GENKEY{
+    font-size: 145% !important;
+  }
+
+  #viewingfile{
+    font-size: 65% !important;
+  }
+
+  #editField{
+    width: 100% !important;
+    font-size: 155% !important;
   }
 
   #navBars {
@@ -186,6 +212,10 @@ html {
 a{
   color: inherit;
   text-decoration: none;
+}
+
+#viewingfile{
+  font-size: 100%;
 }
 
 #editField {

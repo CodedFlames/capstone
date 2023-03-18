@@ -7,26 +7,8 @@ import axios from "axios";
 
 const router = new Navigo("/");
 
-function beforeRender(state) {
-  router.updatePageLinks();
-  switch (state.view) {
-    case "Home":
-      console.log("Home");
-      axios.get(process.env.NASAURLKEY).then(Res => {
-        console.log("Tc's left;", Res.headers["x-ratelimit-remaining"]);
-        store["Home"].photoTitle = Res.data.title;
-        store["Home"].photoUrl = Res.data.hdurl;
-        store["Home"].photoText = Res.data.explanation;
-      }); //Testing function beforeRender to replace router hooks
-      break;
-    case "About":
-      console.log("About");
-  }
-}
-
 function render(state = store.Home) {
-  // beforeRender(state); //temporary fix?
-  document.querySelector("#meta").innerHTML += `${Head(state)}`;
+  document.querySelector("#meta").innerHTML = `${Head(state)}`;
   document.querySelector("#root").innerHTML = `
   ${Nav(store.Links)}
   ${Main(state)}`;
@@ -35,6 +17,7 @@ function render(state = store.Home) {
 }
 
 function afterRender(state) {
+  //these call everytime afterRender.
   // NAVBARS
   // console.log("In afterRender."); //debug
   let barr = document.querySelector("#navBars");
@@ -58,14 +41,7 @@ function afterRender(state) {
       const inputs = event.target.elements;
       store.Makefile.closeAt = inputs.numberOfOpens.value;
       axios
-        .get(`${process.env.ON_RENDER}/genkey/${inputs.userField.value}`)
-        .then(res => {
-          // console.log(`render api; ${res.data}`);
-          store.Makefile.maskedKey = res.data["genkey"];
-          return axios.get(
-            `${process.env.CLOUDFLARE}/validate/${res.data["genkey"]}`
-          );
-        })
+        .get(`${process.env.CLOUDFLARE}/genkey/${inputs.userField.value}`)
         .then(response => {
           // console.log(`cloudflare api; ${response.data}`);
           store.Makefile.KEY = response.data["result"];
@@ -112,7 +88,6 @@ function afterRender(state) {
       axios
         .get(`${process.env.ON_RENDER}/storing/${inputs.CODE.value}`)
         .then(res => {
-          console.log(res.data);
           store.Openfile.data = [];
           store.Openfile.data.push(res.data[0]);
           return true;
@@ -125,6 +100,10 @@ function afterRender(state) {
         .catch(e => router.navigate("/Deleted"));
       return true;
     });
+  } else if (state.view === "About") {
+    axios.get(`${process.env.CLOUDFLARE}/random`).then(Res => {
+      store["About"].cloudflare = Res.data;
+    });
   }
 }
 
@@ -136,15 +115,24 @@ router.hooks({
         : "Home";
     switch (view) {
       case "Home":
-        axios.get(process.env.NASAURLKEY).then(Res => {
-          console.log("IN AXIOS CALL, API CALL IS HAPPENING.");
-          console.log("Tc's left;", Res.headers["x-ratelimit-remaining"]);
-          store["Home"].photoTitle = Res.data.title;
-          store["Home"].photoUrl = Res.data.hdurl;
-          store["Home"].photoText = Res.data.explanation;
-          done();
-        });
+        axios
+          .get(`${process.env.CLOUDFLARE}/howmany`)
+          .then(res => {
+            store["Home"].currentKeys = res.data.result;
+            return axios.get(process.env.NASAURLKEY);
+          })
+          .then(Res => {
+            console.log("IN AXIOS CALL, API CALL IS HAPPENING.");
+            console.log("Tc's left;", Res.headers["x-ratelimit-remaining"]);
+            store["Home"].photoTitle = Res.data.title;
+            store["Home"].photoUrl = Res.data.hdurl;
+            store["Home"].photoText = Res.data.explanation;
+            done();
+          });
         break; //runs until break
+      case "About":
+        done();
+        break;
       default:
         done();
         break;
