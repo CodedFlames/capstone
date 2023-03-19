@@ -101,9 +101,6 @@ function afterRender(state) {
       return true;
     });
   } else if (state.view === "About") {
-    axios.get(`${process.env.CLOUDFLARE}/random`).then(Res => {
-      store["About"].cloudflare = Res.data;
-    });
   }
 }
 
@@ -131,7 +128,10 @@ router.hooks({
           });
         break; //runs until break
       case "About":
-        done();
+        axios.get(`${process.env.CLOUDFLARE}/random`).then(Res => {
+          store["About"].cloudflare = Res.data;
+          done();
+        });
         break;
       default:
         done();

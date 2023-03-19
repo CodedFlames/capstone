@@ -26,7 +26,11 @@ export default store => html`
     <h6 class="micro textcenter">
       fun fact, this is a "spa", Single Page Application that loads in using JS!
     </h6>
-    <h6 class="micro textcenter">${store.cloudflare.result}</h6>
-    <h7 class="micro textcenter">^ Refresh to see a new one ^</h7>
+    <h6
+      style="color: orange; background-color: black;"
+      class="micro textcenter"
+    >
+      ${store.cloudflare.result}
+    </h6>
   </section>
 `;
