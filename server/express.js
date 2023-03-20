@@ -2,7 +2,6 @@ const express = require("express");
 const app = express();
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
-const scripts = require("./scripts/genkey");
 const storing = require("./routes/storing");
 
 dotenv.config();
