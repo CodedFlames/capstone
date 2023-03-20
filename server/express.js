@@ -52,11 +52,5 @@ app.get("/status", (Req, Res) => {
   Res.send(`<h1 style="text-align: center;">Status Healthy</h1>`);
 });
 
-app.get("/genkey/:text", (Req, Res) => {
-  const text = Req.params.text.toString();
-  const scrm = scripts.genkey(text);
-  Res.status(200).json({ genkey: scrm });
-});
-
 app.use("/storing", storing);
 app.listen(PORT, () => console.log(`Listening on Port ${PORT}`));
