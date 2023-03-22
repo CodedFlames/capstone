@@ -8,6 +8,9 @@ export default store =>
         ${store.topper}
       </h1>
       <form id="openAFile" class="flexcontainer flexcol flexcenter">
+        <span style="font-size: 55px;" class="black material-symbols-outlined">
+          key
+        </span>
         <input
           type="text"
           class="big inputBar textcenter dynamic-mobile-full space"
@@ -23,7 +26,7 @@ export default store =>
       </form>
       <h6 class="small">Currently: ${store.currentKeys} genkeys in use</h6>
       <h4 class="textcenter medium bigspace">Fun nasa fact below!</h4>
-      <h1>${store.photoTitle}</h1>
+      <h1 class="textcenter">${store.photoTitle}</h1>
       <img
         class="dynamic-mobile-full"
         width="500"

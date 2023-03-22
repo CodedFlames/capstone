@@ -20,13 +20,13 @@ I want to build an application that processes your own words, turns them into a 
 - - Home
 - - - I want quick access to open files
 - - about
-- - - information about how site was made
+- - - information about the site
 - - contact
 - - - Easy form for contacting
 - - create
-- - - unique generation of code
+- - - unique generation of "Genkey"
 - - Making File
-- - - quick editing then offical posting of code
+- - - quick editing then post "Genkey"
 
 <br>
 
@@ -51,15 +51,15 @@ I want to build an application that processes your own words, turns them into a 
 
 
 ### Color Palette
-###### updated
+###### updated on 3/21/23
 
 <br>
 
-> <em>`#5e1400`</em>
+> <em>`#c64545`</em>
 
 <br>
 
-> <em>`#c9c9c9`</em>
+> <em>`#d5d5d5`</em>
 
 <br>
 
@@ -67,13 +67,14 @@ I want to build an application that processes your own words, turns them into a 
 
 <br>
 
- > <em>`#ff0000`</em>
+ > <em>`#960000`</em>
 
 
 <br>
 
 ### Image's
 - potentially savvy coders logo in about page.
+- Nasa api url that has images
 
 <br>
 
@@ -96,8 +97,9 @@ I want to build an application that processes your own words, turns them into a 
 
 # Mural Map Link
 - ### [Story Map](https://app.mural.co/t/usrstorymapdb0170/m/usrstorymapdb0170/1674777884730/afeacf530299b595a71dcf3bc01d4408fae959f4?sender=ud917262b2b13b20bb8752529)
-![UserStory Map](/Images/usrStoryMap.png)
 
+![UserStory Map](/Images/usrStoryMap.png)
+ ###### long form*
 ---
 ## Mural BackBone
 ![User Backbone](/Images/UserSTORY%20BACKBONE.png)

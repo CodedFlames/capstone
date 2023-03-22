@@ -6,11 +6,27 @@ export default store => html`
   >
     ${store.data
       .map(item => {
-        return `<div class="outline"><h1 class="bigger">Genkey<h1><h2 class="big" id="GENKEY">${
-          item.genkey
-        }</h2><h3 class="medium">Open's : ${item.opens +
-          1}<p class="medium" id="viewingfile">${item.message}</p></div>`;
+        return html`
+          <div class="outline">
+            <h1 class="black bigger">Genkey</h1>
+            <h2 class="big key" id="GENKEY">${item.genkey}</h2>
+            <h3 class="medium">Opened ${item.opens + 1} times so far.</h3>
+            <span
+              style="font-size: 40px;"
+              class="black material-symbols-outlined"
+            >
+              emergency_heat
+            </span>
+            <h3 class="medium">Closes at ${item.closeAt}</h3>
+            <h3 id="viewingfile">${item.message}</h3>
+          </div>
+        `;
       })
       .join("")}
+    ${store.links[0].map(item => {
+      return html`
+        <a class="black medium" href="${item}">${item}</a>
+      `;
+    })}
   </section>
 `;
