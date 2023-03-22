@@ -50,7 +50,7 @@ route.get("/:genkey", (Request, Response) => {
   });
 });
 
-route.get("/WIPE/TRUE", (Request, Response) => {
+route.get(`/WIPE/${process.env.WIPECODE}/TRUE`, (Request, Response) => {
   File.deleteMany({}, (error, record) => {
     if (error) return Response.status(500).json(error);
     return Response.json(record);
