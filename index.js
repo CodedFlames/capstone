@@ -1,3 +1,4 @@
+/* eslint-disable no-inner-declarations */
 import * as store from "./store";
 import { Head, Nav, Main } from "./components";
 import Navigo from "navigo";
@@ -54,10 +55,21 @@ function afterRender(state) {
         });
     });
   } else if (state.view === "Makefile") {
+    document.querySelector("#makeCopy").addEventListener("click", event => {
+      const copy_this = document.querySelector("#makeKey");
+      navigator.clipboard.writeText(copy_this.innerText);
+    });
     document.querySelector("#Creating").addEventListener("submit", event => {
       event.preventDefault();
       inputs = event.target.elements;
       if (confirm("are you sure? you can no longer edit it once posted.")) {
+        const test = {
+          item: String(inputs.editField.value)
+        };
+        axios.post(`${process.env.CLOUDFLARE}/anchor`, test).then(res => {
+          store.Openfile.links = [];
+          store.Openfile.links.push(res.data.result);
+        });
         const postingblock = {
           opens: 0,
           closeAt: Number(store.Makefile.closeAt),
@@ -69,7 +81,6 @@ function afterRender(state) {
           .then(res => {
             store.Openfile.data = [];
             store.Openfile.data.push(res.data);
-            console.log(store.Openfile.data);
             return true;
           })
           .then(function done(boo) {
@@ -90,6 +101,13 @@ function afterRender(state) {
         .then(res => {
           store.Openfile.data = [];
           store.Openfile.data.push(res.data[0]);
+          const test = { item: `${res.data[0].message}` };
+          return axios.post(`${process.env.CLOUDFLARE}/anchor`, test);
+        })
+        .then(res => {
+          store.Openfile.links = [];
+          store.Openfile.links.push(res.data.result);
+          console.log(res.data.result);
           return true;
         })
         .then(function done(boo) {
@@ -97,10 +115,13 @@ function afterRender(state) {
             ? router.navigate("/Openfile")
             : console.log("router can't navigate");
         })
-        .catch(e => router.navigate("/Deleted"));
+        .catch(e => {
+          console.log("ERROR, line 118", e);
+          router.navigate("/Deleted");
+        });
       return true;
     });
-  } else if (state.view === "About") {
+  } else if (state.view === "Openfile") {
   }
 }
 

@@ -4,10 +4,10 @@
 
 /* Color Palette */
 :root {
-  --black: #022702;
-  --background: #c9c9c9;
+  --black: #c64545;
+  --background: #d5d5d5;
   --white: #ffffff;
-  --label: #0d860d;
+  --label: #960000;
 }
 
 /* Utility classes */
@@ -158,7 +158,7 @@
   }
 
   #viewingfile{
-    font-size: 65% !important;
+    font-size: 150% !important;
   }
 
   #editField{
@@ -209,13 +209,18 @@ html {
 
 
 /* Specific Selectors */
+.copyButton{
+  font-size: 120%;
+  margin: 5px;
+}
+
 a{
   color: inherit;
   text-decoration: none;
 }
 
 #viewingfile{
-  font-size: 100%;
+  font-size: 170%;
 }
 
 #editField {
@@ -259,6 +264,10 @@ a{
 
 
 /* CLASS STYLE CHANGERS */
+.key {
+  color: var(--label);
+  background-color: white;
+}
 .outline{
   border: solid var(--label);
 }
