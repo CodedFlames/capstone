@@ -66,18 +66,17 @@ function afterRender(state) {
         const test = {
           item: String(inputs.editField.value)
         };
-        axios.post(`${process.env.CLOUDFLARE}/anchor`, test).then(res => {
-          store.Openfile.links = [];
-          store.Openfile.links.push(res.data.result);
-        });
-        const postingblock = {
-          opens: 0,
-          closeAt: Number(store.Makefile.closeAt),
-          genkey: String(store.Makefile.KEY),
-          message: String(inputs.editField.value)
-        };
         axios
-          .post(`${process.env.ON_RENDER}/storing`, postingblock)
+          .post(`${process.env.CLOUDFLARE}/LKODE`, test)
+          .then(res => {
+            const postingblock = {
+              opens: 0,
+              closeAt: Number(store.Makefile.closeAt),
+              genkey: String(store.Makefile.KEY),
+              message: String(res.data.result)
+            };
+            return axios.post(`${process.env.ON_RENDER}/storing`, postingblock);
+          })
           .then(res => {
             store.Openfile.data = [];
             store.Openfile.data.push(res.data);
@@ -101,13 +100,6 @@ function afterRender(state) {
         .then(res => {
           store.Openfile.data = [];
           store.Openfile.data.push(res.data[0]);
-          const test = { item: `${res.data[0].message}` };
-          return axios.post(`${process.env.CLOUDFLARE}/anchor`, test);
-        })
-        .then(res => {
-          store.Openfile.links = [];
-          store.Openfile.links.push(res.data.result);
-          console.log(res.data.result);
           return true;
         })
         .then(function done(boo) {
@@ -116,7 +108,7 @@ function afterRender(state) {
             : console.log("router can't navigate");
         })
         .catch(e => {
-          console.log("ERROR, line 118", e);
+          console.log("ERROR, line 119", e);
           router.navigate("/Deleted");
         });
       return true;

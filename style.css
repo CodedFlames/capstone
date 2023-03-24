@@ -4,7 +4,7 @@
 
 /* Color Palette */
 :root {
-  --black: #c64545;
+  --black: #bb4b37;
   --background: #d5d5d5;
   --white: #ffffff;
   --label: #960000;
@@ -209,12 +209,22 @@ html {
 
 
 /* Specific Selectors */
+b{
+  font-style: italic;
+  font-size: 200%;
+}
+
 .copyButton{
   font-size: 120%;
   margin: 5px;
 }
 
-a{
+h3 > a:visited, h3 > a{
+  color: var(--label);
+}
+
+
+h2 > a{
   color: inherit;
   text-decoration: none;
 }
