@@ -14,7 +14,7 @@ export default store => html`
       <textarea
         id="editField"
         class="dynamic-Qfull medium"
-        placeholder="Write what you want here. Please note that if you want to link something just type it like 'Example.com'"
+        placeholder="**Example.com** ^^Bold^^ <<Red>> >>Blue<<, Not stackable, don't use HTTPS:// for links."
         cols="100"
         rows="25"
       ></textarea>

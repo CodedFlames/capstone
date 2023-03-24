@@ -23,10 +23,5 @@ export default store => html`
         `;
       })
       .join("")}
-    ${store.links[0].map(item => {
-      return html`
-        <a class="black medium" href="${item}">${item}</a>
-      `;
-    })}
   </section>
 `;

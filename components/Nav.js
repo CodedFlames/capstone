@@ -22,7 +22,7 @@ export default links => html`
         ${links
           .map(
             item =>
-              `<h2 class="hoverabove"id="${item.id}"><a href="/${item.id}"data-navigo>${item.id}</a></h2>`
+              `<h2 class="hoverabove noSelect"id="${item.id}"><a href="/${item.id}"data-navigo>${item.id}</a></h2>`
           )
           .join("")}
       </div>
